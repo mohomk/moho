@@ -10,7 +10,7 @@ export default function Home() {
       >
         <Animation/>
 
-        <div className="w-full max-w-screen-xl mx-auto p-4 pb-20">
+        <div className="w-full max-w-screen-xl mx-auto px-4 pb-20 pt-16">
           <div className="w-full">
             <h1
               className="max-w-3xl drop-shadow-lg text-white font-bold text-5xl md:text-6xl leading-tight sm:leading-tight md:leading-tight mb-5">

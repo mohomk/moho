@@ -1,26 +1,144 @@
+/*@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');*/
+
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*:root {*/
+/*  --background: #ffffff;*/
+/*  --foreground: #171717;*/
+/*}*/
+
+/*@theme inline {*/
+/*  --color-background: var(--background);*/
+/*  --color-foreground: var(--foreground);*/
+/*  --font-sans: var(--font-geist-sans);*/
+/*  --font-mono: var(--font-geist-mono);*/
+/*}*/
+
+/*@media (prefers-color-scheme: dark) {*/
+/*  :root {*/
+/*    --background: #0a0a0a;*/
+/*    --foreground: #ededed;*/
+/*  }*/
+/*}*/
+
+/*body {*/
+/*  background: var(--background);*/
+/*  color: var(--foreground);*/
+/*  font-family: Arial, Helvetica, sans-serif;*/
+/*}*/
+
+@theme {
+    /* Border radius */
+    --radius: 0.5rem;
+    --radius-lg: var(--radius);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-sm: calc(var(--radius) - 4px);
+
+    /* Colors */
+    --color-background: hsl(220 40% 2%);
+    --color-foreground: hsl(210 40% 98%);
+
+    --color-card: hsl(222 47% 11%);
+    --color-card-foreground: hsl(210 40% 98%);
+
+    --color-popover: hsl(222 47% 11%);
+    --color-popover-foreground: hsl(210 40% 98%);
+
+    /*--color-primary: hsl(187 100% 50%);*/
+    /*--color-primary-foreground: hsl(220 40% 2%);*/
+
+    --color-secondary: hsl(222 47% 11%);
+    --color-secondary-foreground: hsl(210 40% 98%);
+
+    --color-muted: hsl(217 33% 17%);
+    --color-muted-foreground: hsl(215 20% 65%);
+
+    --color-accent: hsl(217 91% 60%);
+    --color-accent-foreground: hsl(210 40% 98%);
+
+    --color-destructive: hsl(0 84.2% 60.2%);
+    --color-destructive-foreground: hsl(0 0% 98%);
+
+    --color-border: hsl(217 33% 17%);
+    --color-input: hsl(217 33% 17%);
+    /*--color-ring: hsl(187 100% 50%);*/
+
+    /*--color-chart-1: hsl(187 100% 50%);*/
+    --color-chart-2: hsl(217 91% 60%);
+    --color-chart-3: hsl(197 37% 24%);
+    --color-chart-4: hsl(43 74% 66%);
+    --color-chart-5: hsl(27 87% 67%);
+
+    --color-sidebar: hsl(222 47% 11%);
+    --color-sidebar-foreground: hsl(210 40% 98%);
+    /*--color-sidebar-primary: hsl(187 100% 50%);*/
+    /*--color-sidebar-primary-foreground: hsl(220 40% 2%);*/
+    --color-sidebar-accent: hsl(217 33% 17%);
+    --color-sidebar-accent-foreground: hsl(210 40% 98%);
+    --color-sidebar-border: hsl(217 33% 17%);
+    /*--color-sidebar-ring: hsl(187 100% 50%);*/
+
+    /*--primary: 187 100% 50%;*/
+    /*--primary-foreground: 220 40% 2%;*/
+    --secondary: 222 47% 11%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    /*--accent: 217 91% 60%;*/
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Updated to moho logo green */
+    --color-primary: hsl(149 100% 32%);
+    --color-primary-foreground: hsl(0 0% 98%);
+
+    --accent: 235 48% 20%;
+
+    --color-ring: hsl(149 100% 32%);
+
+    --color-chart-1: hsl(149 100% 32%);
+
+    --color-sidebar-primary: hsl(149 100% 32%);
+    --color-sidebar-primary-foreground: hsl(0 0% 98%);
+    --color-sidebar-ring: hsl(149 100% 32%);
+
+    --primary: 149 100% 32%;
+    --primary-foreground: 0 0% 98%;
+
+    /* Updated to moho logo blue */
+    /*--color-primary: hsl(235 48% 20%);*/
+    /*--color-primary-foreground: hsl(0 0% 98%);*/
+
+    /*--color-ring: hsl(235 48% 20%);*/
+
+    /*--color-chart-1: hsl(235 48% 20%);*/
+
+    /*--color-sidebar-primary: hsl(235 48% 20%);*/
+    /*--color-sidebar-primary-foreground: hsl(0 0% 98%);*/
+    /*--color-sidebar-ring: hsl(235 48% 20%);*/
+
+    /*--primary: 235 48% 20%;*/
+    /*--primary-foreground: 0 0% 98%;*/
+
+    /* Fonts */
+    --font-heading: "Manrope", ui-sans-serif, system-ui, sans-serif;
+    --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+    * {
+        @apply border-border outline-ring/50;
+    }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+    body {
+        @apply bg-background text-foreground font-body;
+        line-height: 1.6;
+    }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    html {
+        scroll-behavior: smooth;
+    }
 }

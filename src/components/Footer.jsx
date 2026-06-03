@@ -22,7 +22,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex items-center gap-8">
+        <div className="flex items-center flex-wrap justify-center-safe gap-8">
           <a href="#services" className="font-mono text-xs text-muted-foreground hover:text-primary transition-colors">
             Services
           </a>

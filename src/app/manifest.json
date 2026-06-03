@@ -1,6 +1,7 @@
 {
   "name": "moho",
   "short_name": "moho",
+  "description": "We specialize in crafting innovative web solutions that captivate, engage, and inspire. Your trusted partner in digital transformation.",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -17,5 +18,6 @@
   ],
   "theme_color": "#1b1f4f",
   "background_color": "#1b1f4f",
-  "display": "standalone"
+  "display": "standalone",
+  "start_url": "/"
 }

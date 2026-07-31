@@ -46,7 +46,7 @@ const LANGUAGES = [
   { code: 'mk', label: 'Македонски', Flag: FlagMK },
 ]
 
-export default function LanguageSwitcher({ lang, className = '' }) {
+export default function LanguageSwitcher({ lang, className = '', inline = false }) {
   const [open, setOpen] = useState(false)
   const ref = useRef(null)
 
@@ -77,7 +77,7 @@ export default function LanguageSwitcher({ lang, className = '' }) {
       {open && (
         <div
           role='listbox'
-          className='absolute left-0 top-full mt-3 w-44 border border-border/60 bg-background/95 backdrop-blur-xl shadow-xl py-1 z-50'
+          className={`${inline ? 'relative mt-3 w-full' : 'absolute left-0 top-full mt-3 w-44 shadow-xl z-50'} border border-border/60 bg-background/95 backdrop-blur-xl py-1`}
         >
           {LANGUAGES.map(({ code, label, Flag }) => (
             <a

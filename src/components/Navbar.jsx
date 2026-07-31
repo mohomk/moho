@@ -88,7 +88,7 @@ export default function Navbar({ lang, dict }) {
               {item.label}
             </a>
           ))}
-          <LanguageSwitcher lang={lang} />
+          <LanguageSwitcher lang={lang} inline />
           <a
             href='mailto:contact@moho.mk'
             className='block text-center bg-primary text-primary-foreground font-heading font-bold text-sm px-6 py-2.5'

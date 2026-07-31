@@ -2,18 +2,19 @@
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { useScrollspy } from '@/lib/hooks/use-scroll-spy'
+import LanguageSwitcher from '@/components/LanguageSwitcher'
 
-const NAV_ITEMS = [
-  { label: 'Services', href: '#services' },
-  { label: 'Process', href: '#process' },
-  { label: 'Why Us', href: '#why-us' },
-  { label: 'Products', href: '#products' },
-  { label: 'Contact', href: '#contact' },
-];
-
-export default function Navbar() {
+export default function Navbar({ lang, dict }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const NAV_ITEMS = [
+    { label: dict.services, href: '#services' },
+    { label: dict.process, href: '#process' },
+    { label: dict.whyUs, href: '#why-us' },
+    { label: dict.products, href: '#products' },
+    { label: dict.contact, href: '#contact' },
+  ];
 
   const ids = NAV_ITEMS.map(({ href }) => href.slice(1))
   const activeId = useScrollspy(ids, 50)
@@ -54,11 +55,12 @@ export default function Navbar() {
               {item.label}
             </a>
           ))}
+          <LanguageSwitcher lang={lang} />
           <a
             href='mailto:contact@moho.mk'
             className='bg-primary text-primary-foreground font-heading font-bold text-sm px-6 py-2.5 hover:shadow-[0_0_24px_rgba(0,242,255,0.4)] transition-all duration-300'
           >
-            {'Let\'s Talk'}
+            {dict.letsTalk}
           </a>
         </div>
 
@@ -86,11 +88,12 @@ export default function Navbar() {
               {item.label}
             </a>
           ))}
+          <LanguageSwitcher lang={lang} />
           <a
             href='mailto:contact@moho.mk'
             className='block text-center bg-primary text-primary-foreground font-heading font-bold text-sm px-6 py-2.5'
           >
-            {'Let\'s Talk'}
+            {dict.letsTalk}
           </a>
         </div>
       )}

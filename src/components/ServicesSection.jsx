@@ -1,51 +1,17 @@
 import { Globe, Code, Workflow, Database, Wrench, BarChart3 } from 'lucide-react'
 
-const SERVICES = [
-  {
-    icon: Workflow,
-    title: "ERP Solutions",
-    desc: "We build custom ERP platforms that optimize operations, automate workflows, and empower businesses with centralized data management.",
-    num: "01",
-    large: true,
-  },
-  {
-    icon: Code,
-    title: "Web Development",
-    desc: "Our developers code with precision, creating powerful, scalable, and secure web applications.",
-    num: "02",
-    large: false,
-  },
-  {
-    icon: Globe,
-    title: "Web Design",
-    desc: "Our design wizards transform your vision into pixel-perfect reality, ensuring a visually stunning and engaging website.",
-    num: "03",
-    large: false,
-  },
-  {
-    icon: Database,
-    title: "CMS Development",
-    desc: "Take control of your content with our custom Content Management System solutions.",
-    num: "04",
-    large: false,
-  },
-  {
-    icon: Wrench,
-    title: "Website Maintenance",
-    desc: "Ongoing support, updates, and enhancements to keep your site in top shape.",
-    num: "05",
-    large: false,
-  },
-  {
-    icon: BarChart3,
-    title: "Business Analysis",
-    desc: "We turn complexity into clarity through meticulous business and functional analysis, paving the path to success.",
-    num: "06",
-    large: true,
-  },
+const SERVICE_META = [
+  { icon: Workflow, num: "01", large: true },
+  { icon: Code, num: "02", large: false },
+  { icon: Globe, num: "03", large: false },
+  { icon: Database, num: "04", large: false },
+  { icon: Wrench, num: "05", large: false },
+  { icon: BarChart3, num: "06", large: true },
 ];
 
-export default function ServicesSection({ networkImage }) {
+export default function ServicesSection({ networkImage, dict }) {
+  const SERVICES = SERVICE_META.map((meta, i) => ({ ...meta, ...dict.items[i] }))
+
   return (
     <section id="services" className="relative py-32 px-6 lg:px-8 overflow-hidden">
       {/* Background accent */}
@@ -56,13 +22,13 @@ export default function ServicesSection({ networkImage }) {
       <div className="relative z-10 max-w-7xl mx-auto">
         <div className="mb-16">
           <span className="font-mono text-sm text-primary tracking-widest uppercase">
-            // Our Services
+            {dict.eyebrow}
           </span>
           <h2 className="font-display font-extrabold text-4xl sm:text-5xl mt-4">
-            What We Build
+            {dict.title}
           </h2>
           <p className="text-muted-foreground text-lg mt-4 max-w-xl">
-            End-to-end digital solutions engineered for performance and scale.
+            {dict.description}
           </p>
         </div>
 

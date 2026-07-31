@@ -3,15 +3,15 @@ import { useState } from 'react'
 import { toast, Toaster } from 'sonner'
 import { z } from 'zod'
 
-export default function ContactSection({ bgImage }) {
+export default function ContactSection({ bgImage, dict }) {
   const [form, setForm] = useState({ email: '', subject: '', message: '' })
   const [processing, setProcessing] = useState(false)
   const [errors, setErrors] = useState({})
 
   const contactSchema = z.object({
-    email: z.string().min(1, 'Email is required').email('Invalid email address'),
-    subject: z.string().min(1, 'Subject is required'),
-    message: z.string().min(1, 'Message is required'),
+    email: z.string().min(1, dict.validation.emailRequired).email(dict.validation.emailInvalid),
+    subject: z.string().min(1, dict.validation.subjectRequired),
+    message: z.string().min(1, dict.validation.messageRequired),
   })
 
   const handleValidation = () => {
@@ -25,7 +25,7 @@ export default function ContactSection({ bgImage }) {
         ...(tree.properties?.message?.errors?.[0] && { message: tree.properties.message.errors[0] }),
       })
 
-      toast.error('Please fill in all the required fields.')
+      toast.error(dict.validation.toastError)
 
       return false
     }
@@ -50,7 +50,7 @@ export default function ContactSection({ bgImage }) {
         .then(res => {
           setForm({ email: '', subject: '', message: '' })
 
-          toast.success('Message sent! We\'ll be in touch soon.')
+          toast.success(dict.validation.toastSuccess)
         })
     }
 
@@ -70,50 +70,50 @@ export default function ContactSection({ bgImage }) {
       <div className='relative z-10 max-w-3xl mx-auto'>
         <div className='text-center mb-16'>
           <span className='font-mono text-sm text-primary tracking-widest uppercase'>
-            {'// Get In Touch'}
+            {dict.eyebrow}
           </span>
           <h2 className='font-display font-extrabold text-4xl sm:text-5xl mt-4'>
-            {'Let\'s Build Something'}
+            {dict.title}
           </h2>
           <p className='text-muted-foreground text-lg mt-4'>
-            Ready to transform your digital presence? Start a conversation.
+            {dict.description}
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className='space-y-8' autoComplete='off'>
           <div>
             <label className='font-mono text-xs text-muted-foreground uppercase tracking-wider mb-2 block'>
-              {'$ email'}
+              {dict.form.emailLabel}
             </label>
             <input
               type='email'
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
-              placeholder='you@company.com'
+              placeholder={dict.form.emailPlaceholder}
               className={`w-full bg-transparent border-b border-border py-3 text-foreground placeholder:text-muted-foreground/40 focus:border-primary focus:outline-none transition-colors text-lg ${errors.email && 'border-destructive'}`}
             />
           </div>
           <div>
             <label className='font-mono text-xs text-muted-foreground uppercase tracking-wider mb-2 block'>
-              {'$ subject'}
+              {dict.form.subjectLabel}
             </label>
             <input
               type='text'
               value={form.subject}
               onChange={(e) => setForm({ ...form, subject: e.target.value })}
-              placeholder='Project inquiry'
+              placeholder={dict.form.subjectPlaceholder}
               className={`w-full bg-transparent border-b border-border py-3 text-foreground placeholder:text-muted-foreground/40 focus:border-primary focus:outline-none transition-colors text-lg ${errors.subject && 'border-destructive'}`}
             />
           </div>
           <div>
             <label className='font-mono text-xs text-muted-foreground uppercase tracking-wider mb-2 block'>
-              {'$ message'}
+              {dict.form.messageLabel}
             </label>
             <textarea
               rows={4}
               value={form.message}
               onChange={(e) => setForm({ ...form, message: e.target.value })}
-              placeholder='Tell us about your project...'
+              placeholder={dict.form.messagePlaceholder}
               className={`w-full bg-transparent border-b border-border py-3 text-foreground placeholder:text-muted-foreground/40 focus:border-primary focus:outline-none transition-colors text-lg resize-none  ${errors.message && 'border-destructive'}`}
             />
           </div>
@@ -123,10 +123,10 @@ export default function ContactSection({ bgImage }) {
               disabled={processing}
               className='bg-primary text-primary-foreground font-heading font-bold cursor-pointer px-12 py-4 text-base hover:shadow-[0_0_40px_rgba(0,242,255,0.35)] transition-all duration-300 disabled:opacity-50'
             >
-              {processing ? 'Sending...' : 'Send Message'}
+              {processing ? dict.form.submitting : dict.form.submit}
             </button>
             <span className='text-muted-foreground text-sm'>
-              or email us at{' '}
+              {dict.form.orEmailUs}{' '}
               <a href='mailto:contact@moho.mk' className='text-primary hover:underline'>
                 contact@moho.mk
               </a>

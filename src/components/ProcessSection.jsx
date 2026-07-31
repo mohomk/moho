@@ -1,51 +1,28 @@
 import Image from 'next/image'
 
-const STEPS = [
-  {
-    num: '01',
-    title: 'Discovery',
-    desc: 'We begin by understanding your vision, goals, and requirements. Through in-depth consultations, we map out the project scope and define success metrics.',
-    status: 'initialized',
-  },
-  {
-    num: '02',
-    title: 'Design & Architecture',
-    desc: 'Our team crafts pixel-perfect designs and robust technical architectures. We prototype, iterate, and refine until every detail aligns with your vision.',
-    status: 'active',
-  },
-  {
-    num: '03',
-    title: 'Development',
-    desc: 'We code with precision using cutting-edge frameworks and best practices. Agile sprints, code reviews, and continuous integration ensure quality at every step.',
-    status: 'in_progress',
-  },
-  {
-    num: '04',
-    title: 'Testing & QA',
-    desc: 'Rigorous testing across devices, browsers, and scenarios. We catch every edge case so your users experience only perfection.',
-    status: 'pending',
-  },
-  {
-    num: '05',
-    title: 'Deployment & Support',
-    desc: 'Seamless launch and ongoing maintenance. We monitor performance, push updates, and provide dedicated support to keep your product running flawlessly.',
-    status: 'pending',
-  },
+const STEP_META = [
+  { num: '01', status: 'initialized' },
+  { num: '02', status: 'active' },
+  { num: '03', status: 'in_progress' },
+  { num: '04', status: 'pending' },
+  { num: '05', status: 'pending' },
 ];
 
-export default function ProcessSection({ images }) {
+export default function ProcessSection({ images, dict }) {
+  const STEPS = STEP_META.map((meta, i) => ({ ...meta, ...dict.steps[i] }))
+
   return (
     <section id='process' className='relative py-32 px-6 lg:px-8'>
       <div className='max-w-5xl mx-auto'>
         <div className='text-center mb-20'>
           <span className='font-mono text-sm text-primary tracking-widest uppercase'>
-            // Our Process
+            {dict.eyebrow}
           </span>
           <h2 className='font-display font-extrabold text-4xl sm:text-5xl mt-4'>
-            System Logic
+            {dict.title}
           </h2>
           <p className='text-muted-foreground text-lg mt-4 max-w-xl mx-auto'>
-            From concept to deployment — a rigorous, transparent pipeline.
+            {dict.description}
           </p>
         </div>
 

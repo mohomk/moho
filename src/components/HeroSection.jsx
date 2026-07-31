@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useRef } from 'react'
 
-export default function HeroSection ({ heroImage }) {
+export default function HeroSection ({ heroImage, dict }) {
   const gridRef = useRef(null)
 
   useEffect(() => {
@@ -56,12 +56,12 @@ export default function HeroSection ({ heroImage }) {
       {/* Content */}
       <div className='relative z-10 text-center max-w-5xl mx-auto px-6'>
         <p className='font-mono text-sm text-primary tracking-widest uppercase mb-6'>
-          {'// Software Engineering Studio'}
+          {dict.eyebrow}
         </p>
         <h1 className='font-display font-extrabold text-5xl sm:text-6xl lg:text-7xl leading-[1.2] mb-8'>
-          {'We Design & '}
+          {dict.titlePrefix}
           <span className='relative inline-block'>
-            Develop
+            {dict.titleHighlight}
             {/*<span className='absolute -bottom-2 left-0 right-0 h-1 bg-primary rounded-full'/>*/}
           </span>
           <br/>
@@ -72,25 +72,24 @@ export default function HeroSection ({ heroImage }) {
                 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)))',
             }}
           >
-            {'Web & Mobile Apps'}
+            {dict.titleSuffix}
           </span>
         </h1>
         <p className='text-muted-foreground text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed'>
-          We specialize in crafting innovative web solutions that captivate,
-          engage, and inspire. Your trusted partner in digital transformation.
+          {dict.description}
         </p>
         <div className='flex flex-col sm:flex-row items-center justify-center gap-4'>
           <a
             href='#contact'
             className='bg-primary text-primary-foreground font-heading font-bold px-10 py-4 text-base hover:shadow-[0_0_40px_rgba(0,242,255,0.35)] transition-all duration-300'
           >
-            {'Start a Project →'}
+            {dict.ctaPrimary}
           </a>
           <a
             href='#services'
             className='border border-border text-foreground font-heading font-medium px-10 py-4 text-base hover:border-primary/50 hover:text-primary transition-all duration-300'
           >
-            Explore Services
+            {dict.ctaSecondary}
           </a>
         </div>
       </div>

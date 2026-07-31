@@ -1,29 +1,31 @@
 import { Code2, Palette, Smartphone, Search, Globe, Users, Cpu, HeartHandshake } from "lucide-react";
 
-const FEATURES = [
-  { icon: Code2, title: "Expertise", desc: "Our team of seasoned developers brings years of experience and cutting-edge skills. From front-end design to back-end functionality, we've got you covered.", num: "01" },
-  { icon: Palette, title: "Custom Solutions", desc: "One-size-fits-all doesn't cut it. We specialize in creating bespoke websites that reflect your brand identity and goals.", num: "02" },
-  { icon: Smartphone, title: "Responsive Design", desc: "In today's mobile-first era, your website needs to shine on all devices. We ensure your site is beautiful and fully responsive.", num: "03" },
-  { icon: Search, title: "SEO Optimization", desc: "What good is a website if it can't be found? We implement SEO best practices to boost your site's visibility and ranking.", num: "04" },
-  { icon: Globe, title: "Web Application Development", desc: "From SaaS platforms to enterprise systems, we create robust web applications designed for performance and usability.", num: "05" },
-  { icon: Users, title: "User-Centric Approach", desc: "Your users matter. We create user-friendly, intuitive interfaces that keep visitors engaged and coming back.", num: "06" },
-  { icon: Cpu, title: "Cutting-Edge Technology", desc: "From the latest frameworks to innovative development techniques, we stay ahead of the curve for top-notch solutions.", num: "07" },
-  { icon: HeartHandshake, title: "Client-Centric Philosophy", desc: "Your success is our success. We pride ourselves on clear communication, timely delivery, and exceptional support.", num: "08" },
+const FEATURE_META = [
+  { icon: Code2, num: "01" },
+  { icon: Palette, num: "02" },
+  { icon: Smartphone, num: "03" },
+  { icon: Search, num: "04" },
+  { icon: Globe, num: "05" },
+  { icon: Users, num: "06" },
+  { icon: Cpu, num: "07" },
+  { icon: HeartHandshake, num: "08" },
 ];
 
-export default function WhyChooseSection() {
+export default function WhyChooseSection({ dict }) {
+  const FEATURES = FEATURE_META.map((meta, i) => ({ ...meta, ...dict.items[i] }))
+
   return (
     <section id="why-us" className="relative py-32 px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="mb-16">
           <span className="font-mono text-sm text-primary tracking-widest uppercase">
-            // Why Choose Moho
+            {dict.eyebrow}
           </span>
           <h2 className="font-display font-extrabold text-4xl sm:text-5xl mt-4">
-            Built Different
+            {dict.title}
           </h2>
           <p className="text-muted-foreground text-lg mt-4 max-w-xl">
-            Eight pillars of engineering excellence that set us apart.
+            {dict.description}
           </p>
         </div>
 

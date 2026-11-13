@@ -68,7 +68,7 @@ export default function ContactSection({ bgImage, dict }) {
       </div>
 
       <div className='relative z-10 max-w-3xl mx-auto'>
-        <div className='text-center mb-16'>
+        <div className='text-center mb-16' data-reveal>
           <span className='font-mono text-sm text-primary tracking-widest uppercase'>
             {dict.eyebrow}
           </span>
@@ -82,11 +82,13 @@ export default function ContactSection({ bgImage, dict }) {
 
         <form onSubmit={handleSubmit} className='space-y-8' autoComplete='off'>
           <div>
-            <label className='font-mono text-xs text-muted-foreground uppercase tracking-wider mb-2 block'>
+            <label htmlFor='contact-email' className='font-mono text-xs text-muted-foreground uppercase tracking-wider mb-2 block'>
               {dict.form.emailLabel}
             </label>
             <input
               type='email'
+              id='contact-email'
+              name='email'
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
               placeholder={dict.form.emailPlaceholder}
@@ -94,11 +96,13 @@ export default function ContactSection({ bgImage, dict }) {
             />
           </div>
           <div>
-            <label className='font-mono text-xs text-muted-foreground uppercase tracking-wider mb-2 block'>
+            <label htmlFor='contact-subject' className='font-mono text-xs text-muted-foreground uppercase tracking-wider mb-2 block'>
               {dict.form.subjectLabel}
             </label>
             <input
               type='text'
+              id='contact-subject'
+              name='subject'
               value={form.subject}
               onChange={(e) => setForm({ ...form, subject: e.target.value })}
               placeholder={dict.form.subjectPlaceholder}
@@ -106,11 +110,13 @@ export default function ContactSection({ bgImage, dict }) {
             />
           </div>
           <div>
-            <label className='font-mono text-xs text-muted-foreground uppercase tracking-wider mb-2 block'>
+            <label htmlFor='contact-message' className='font-mono text-xs text-muted-foreground uppercase tracking-wider mb-2 block'>
               {dict.form.messageLabel}
             </label>
             <textarea
               rows={4}
+              id='contact-message'
+              name='message'
               value={form.message}
               onChange={(e) => setForm({ ...form, message: e.target.value })}
               placeholder={dict.form.messagePlaceholder}

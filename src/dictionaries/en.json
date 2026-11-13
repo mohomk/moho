@@ -50,6 +50,10 @@
       {
         "title": "Business Analysis",
         "desc": "We turn complexity into clarity through meticulous business and functional analysis, paving the path to success."
+      },
+      {
+        "title": "API & Integrations",
+        "desc": "We connect your ERP, CRM, payment systems, and third-party tools so your data flows automatically and reliably."
       }
     ]
   },
@@ -127,7 +131,7 @@
       "name": "CREAM ERP",
       "tagline": "One System for Complete Business Management",
       "desc": "CREAM is a modular ERP system designed to grow alongside your business ambitions. With integrated modules, an intuitive user experience, and clear, accurate insights into business data, CREAM provides complete control, improved efficiency, and streamlined operations.",
-      "cta": "Explore CREAM"
+      "cta": "Learn more about CREAM"
     }
   },
   "contact": {

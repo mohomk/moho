@@ -17,7 +17,7 @@ export default function WhyChooseSection({ dict }) {
   return (
     <section id="why-us" className="relative py-32 px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-16">
+        <div className="mb-16" data-reveal>
           <span className="font-mono text-sm text-primary tracking-widest uppercase">
             {dict.eyebrow}
           </span>
@@ -30,11 +30,19 @@ export default function WhyChooseSection({ dict }) {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {FEATURES.map((f) => (
+          {FEATURES.map((f, i) => (
             <div
               key={f.num}
+              data-reveal
+              data-spotlight
+              style={{ '--delay': `${(i % 4) * 100}ms` }}
               className="group relative border border-border/60 bg-card/50 backdrop-blur-sm p-6 hover:border-primary/40 transition-all duration-500 overflow-hidden"
             >
+              {/* Spotlight following the pointer */}
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{ background: "radial-gradient(300px circle at var(--x, 50%) var(--y, 50%), hsl(var(--primary) / 0.12), transparent 60%)" }}
+              />
               {/* Scanline hover effect */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                 <div className="absolute inset-x-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent animate-pulse" style={{ top: "50%" }} />

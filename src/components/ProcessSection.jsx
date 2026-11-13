@@ -1,12 +1,6 @@
 import Image from 'next/image'
 
-const STEP_META = [
-  { num: '01', status: 'initialized' },
-  { num: '02', status: 'active' },
-  { num: '03', status: 'in_progress' },
-  { num: '04', status: 'pending' },
-  { num: '05', status: 'pending' },
-];
+const STEP_META = [{ num: '01' }, { num: '02' }, { num: '03' }, { num: '04' }, { num: '05' }];
 
 export default function ProcessSection({ images, dict }) {
   const STEPS = STEP_META.map((meta, i) => ({ ...meta, ...dict.steps[i] }))
@@ -14,7 +8,7 @@ export default function ProcessSection({ images, dict }) {
   return (
     <section id='process' className='relative py-32 px-6 lg:px-8'>
       <div className='max-w-5xl mx-auto'>
-        <div className='text-center mb-20'>
+        <div className='text-center mb-20' data-reveal>
           <span className='font-mono text-sm text-primary tracking-widest uppercase'>
             {dict.eyebrow}
           </span>
@@ -30,19 +24,22 @@ export default function ProcessSection({ images, dict }) {
         <div className='relative'>
           {/* Center line */}
           <div className='absolute left-4 lg:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/60 via-border to-transparent' />
+          {/* Fills with green as you scroll (CSS scroll timeline, see globals.css) */}
+          <div className='timeline-fill absolute left-4 lg:left-1/2 top-0 bottom-0 w-px bg-primary shadow-[0_0_8px_hsl(var(--primary)/0.8)]' />
 
           <div className='space-y-16'>
             {STEPS.map((step, i) => {
               const isLeft = i % 2 === 0;
               const img = images[i % images.length];
               return (
-                <div key={step.num} className='relative'>
+                // Alternating cards overlap vertically on desktop so the empty side isn't wasted
+                <div key={step.num} className={`relative ${i > 0 ? 'lg:-mt-56' : ''}`}>
                   {/* Node dot */}
-                  <div className='absolute left-4 lg:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-primary shadow-[0_0_12px_rgba(0,242,255,0.6)] z-10' />
+                  <div data-light className='absolute left-4 lg:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-primary shadow-[0_0_12px_hsl(var(--primary)/0.8)] z-10' />
 
                   <div className={`lg:grid lg:grid-cols-2 lg:gap-12 pl-12 lg:pl-0`}>
                     {/* Card */}
-                    <div className={`${isLeft ? 'lg:pr-12 lg:text-right' : 'lg:col-start-2 lg:pl-12'}`}>
+                    <div data-reveal className={`${isLeft ? 'lg:pr-12 lg:text-right' : 'lg:col-start-2 lg:pl-12'}`}>
                       <div className='border border-border/60 bg-card/40 backdrop-blur-sm overflow-hidden'>
                         {/* Terminal title bar */}
                         <div className='flex items-center gap-2 px-4 py-2.5 border-b border-border/40 bg-muted/30'>
@@ -53,11 +50,6 @@ export default function ProcessSection({ images, dict }) {
                           </div>
                           <span className='font-mono text-xs text-muted-foreground ml-2'>
                             step_{step.num}.process
-                          </span>
-                          <span className={`ml-auto font-mono text-xs ${
-                            step.status === 'active' ? 'text-primary' : 'text-muted-foreground/40'
-                          }`}>
-                            [{step.status}]
                           </span>
                         </div>
 
@@ -79,7 +71,7 @@ export default function ProcessSection({ images, dict }) {
                         {/* Content */}
                         <div className='p-6'>
                           <div className='flex items-center gap-3 mb-3'>
-                            <span className='font-mono text-2xl font-bold text-primary/30'>{step.num}</span>
+                            <span className='font-mono text-2xl font-bold text-primary/70'>{step.num}</span>
                             <h3 className='font-heading font-bold text-xl'>{step.title}</h3>
                           </div>
                           <p className='text-muted-foreground text-sm leading-relaxed'>

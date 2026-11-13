@@ -1,4 +1,4 @@
-import { Globe, Code, Workflow, Database, Wrench, BarChart3 } from 'lucide-react'
+import { Globe, Code, Workflow, Database, Wrench, BarChart3, Plug } from 'lucide-react'
 
 const SERVICE_META = [
   { icon: Workflow, num: "01", large: true },
@@ -7,6 +7,7 @@ const SERVICE_META = [
   { icon: Database, num: "04", large: false },
   { icon: Wrench, num: "05", large: false },
   { icon: BarChart3, num: "06", large: true },
+  { icon: Plug, num: "07", large: false },
 ];
 
 export default function ServicesSection({ networkImage, dict }) {
@@ -20,7 +21,7 @@ export default function ServicesSection({ networkImage, dict }) {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto">
-        <div className="mb-16">
+        <div className="mb-16" data-reveal>
           <span className="font-mono text-sm text-primary tracking-widest uppercase">
             {dict.eyebrow}
           </span>
@@ -34,9 +35,12 @@ export default function ServicesSection({ networkImage, dict }) {
 
         {/* Bento grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {SERVICES.map((s) => (
+          {SERVICES.map((s, i) => (
             <div
               key={s.num}
+              data-reveal
+              data-spotlight
+              style={{ '--delay': `${(i % 3) * 100}ms` }}
               className={`group relative border border-border/60 bg-card/40 backdrop-blur-sm p-8 hover:border-primary/40 transition-all duration-500 overflow-hidden ${
                 s.large ? "lg:col-span-2" : ""
               }`}
@@ -44,7 +48,7 @@ export default function ServicesSection({ networkImage, dict }) {
               {/* Spotlight on hover */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
                    style={{
-                     background: "radial-gradient(400px circle at 50% 50%, hsl(var(--primary) / 0.06), transparent 60%)",
+                     background: "radial-gradient(400px circle at var(--x, 50%) var(--y, 50%), hsl(var(--primary) / 0.12), transparent 60%)",
                    }}
               />
 

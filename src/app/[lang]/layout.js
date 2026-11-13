@@ -34,6 +34,13 @@ export async function generateMetadata({ params }) {
   return {
     title: dict.metadata.title,
     description: dict.metadata.description,
+    alternates: {
+      canonical: `https://moho.mk/${lang}`,
+      languages: {
+        ...Object.fromEntries(locales.map((l) => [l, `https://moho.mk/${l}`])),
+        'x-default': 'https://moho.mk/en',
+      },
+    },
     appleWebApp: {
       title: dict.metadata.appleWebAppTitle,
     },

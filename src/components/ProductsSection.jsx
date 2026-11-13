@@ -5,7 +5,7 @@ export default function ProductsSection({ dict }) {
   return (
     <section id='products' className='relative py-32 px-6 lg:px-8'>
       <div className='max-w-5xl mx-auto'>
-        <div className='text-center mb-20'>
+        <div className='text-center mb-20' data-reveal>
           <span className='font-mono text-sm text-primary tracking-widest uppercase'>
             {dict.eyebrow}
           </span>
@@ -18,7 +18,7 @@ export default function ProductsSection({ dict }) {
         </div>
 
         {/* Products */}
-        <div className='relative border-border/60 border-t border-b'>
+        <div className='relative border-border/60 border-t border-b' data-reveal>
           <div className='relative border-border/60 bg-card/40 xl:border-x px-4 py-16'>
             <div className='grid lg:grid-cols-2 gap-8'>
               <div className='flex items-center justify-center'>

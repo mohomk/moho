@@ -1,8 +1,22 @@
 'use client'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function HeroSection ({ heroImage, dict }) {
   const gridRef = useRef(null)
+  const [typed, setTyped] = useState(0)
+
+  // Type out the eyebrow one character at a time (all at once for reduced-motion visitors)
+  useEffect(() => {
+    const total = dict.eyebrow.length
+    const step = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? total : 1
+    const id = setInterval(() => {
+      setTyped((n) => {
+        if (n + step >= total) clearInterval(id)
+        return Math.min(n + step, total)
+      })
+    }, 50)
+    return () => clearInterval(id)
+  }, [dict.eyebrow])
 
   useEffect(() => {
     const handleMouse = (e) => {
@@ -56,7 +70,9 @@ export default function HeroSection ({ heroImage, dict }) {
       {/* Content */}
       <div className='relative z-10 text-center max-w-5xl mx-auto px-6'>
         <p className='font-mono text-sm text-primary tracking-widest uppercase mb-6'>
-          {dict.eyebrow}
+          <span className='sr-only'>{dict.eyebrow}</span>
+          <span aria-hidden='true'>{dict.eyebrow.slice(0, typed)}</span>
+          <span aria-hidden='true' className='caret inline-block w-[0.6em] h-[1.1em] -mb-[0.2em] ml-1 bg-primary' />
         </p>
         <h1 className='font-display font-extrabold text-5xl sm:text-6xl lg:text-7xl leading-[1.2] mb-8'>
           {dict.titlePrefix}
@@ -66,10 +82,10 @@ export default function HeroSection ({ heroImage, dict }) {
           </span>
           <br/>
           <span
-            className='text-transparent bg-clip-text'
+            className='gradient-shift text-transparent bg-clip-text'
             style={{
               backgroundImage:
-                'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)))',
+                'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--primary)))',
             }}
           >
             {dict.titleSuffix}

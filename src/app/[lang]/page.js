@@ -7,6 +7,7 @@ import WhyChooseSection from '@/components/WhyChooseSection'
 import ContactSection from '@/components/ContactSection'
 import Footer from '@/components/Footer'
 import ProductsSection from '@/components/ProductsSection'
+import ScrollEffects from '@/components/ScrollEffects'
 import { getDictionary, hasLocale } from './dictionaries'
 
 const IMAGES = {
@@ -36,6 +37,7 @@ export default async function Home({ params }) {
       <ProductsSection dict={dict.products} />
       <ContactSection bgImage={IMAGES.contact} dict={dict.contact} />
       <Footer dict={{ ...dict.footer, nav: dict.nav }} />
+      <ScrollEffects />
     </div>
   )
 }
